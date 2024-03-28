@@ -1,0 +1,19 @@
+services:
+  transmission:
+    image: transmission
+    build: .
+    container_name: transmission
+    restart: unless-stopped
+
+    ports:
+      - "9091:9091/tcp"
+      - "51413:51413/tcp"
+      - "51413:51413/udp"
+
+    tmpfs:
+      - /tmp
+
+    volumes:
+      - ./config:/transmission/config
+      - ./downloads:/transmission/downloads
+      - ./incomplete:/transmission/incomplete
